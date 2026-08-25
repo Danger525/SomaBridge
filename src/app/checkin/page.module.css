@@ -1,0 +1,162 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .main {
+    height: 100vh;
+    padding-top: 56px; /* account for top nav */
+  }
+}
+
+@media (max-width: 1023px) {
+  .main {
+    padding-bottom: 64px; /* account for bottom nav */
+  }
+}
+
+.sceneWrapper {
+  flex: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Desktop: shift scene when panel is open */
+@media (min-width: 1024px) {
+  .sceneWrapper.panelOpen {
+    transform: translateX(-200px);
+  }
+}
+
+/* Back button + zone info overlay */
+.overlay {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  right: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  z-index: var(--z-dropdown);
+  pointer-events: none;
+}
+
+.overlay > * {
+  pointer-events: auto;
+}
+
+.backBtn {
+  background: rgba(20, 20, 26, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.topActions {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: var(--z-dropdown);
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .overlay,
+  .topActions {
+    top: calc(56px + var(--space-4));
+    left: var(--space-6);
+  }
+}
+
+.changeModelBtn {
+  background: rgba(20, 20, 26, 0.8) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.zoneInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.zoneName {
+  font-family: var(--font-outfit);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.zoneHint {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Instructions at bottom when not zoomed */
+.instructions {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: var(--z-dropdown);
+  pointer-events: none;
+}
+
+.instructions p {
+  font-family: var(--font-inter);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  background: rgba(20, 20, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.sensationCount {
+  margin-top: var(--space-2) !important;
+  font-weight: 500;
+  color: var(--text-accent) !important;
+}
+
+/* Context input area */
+.contextArea {
+  position: absolute;
+  bottom: calc(64px + 104px);
+  left: 16px;
+  right: 16px;
+  max-width: 440px;
+  margin: 0 auto;
+  z-index: var(--z-dropdown);
+  pointer-events: auto;
+}
+
+@media (min-width: 1024px) {
+  .contextArea {
+    bottom: 72px;
+    left: 40px;
+    right: auto;
+    width: 360px;
+    max-width: none;
+    margin: 0;
+  }
+}
